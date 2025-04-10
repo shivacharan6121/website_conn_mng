@@ -437,7 +437,7 @@ $conn->close();
     <?php unset($_SESSION['alert']); endif; ?>
     <div class="container">
         <div class="toggle-buttons">
-            <button class="toggle-btn <?php echo $current_form == 'add-part' ? 'active' : ''; ?>" onclick="showForm('add-part')">Add Part</button>
+            <button class="toggle-btn <?php echo $current_form == 'add-part' ? 'active' : ''; ?>" onclick="showForm('add-part')">Add New Part</button>
             <button class="toggle-btn <?php echo $current_form == 'add-conn' ? 'active' : ''; ?>" onclick="showForm('add-conn')">Add Connectors</button>
             <button class="toggle-btn <?php echo $current_form == 'required-conn' ? 'active' : ''; ?>" onclick="showForm('required-conn')">Connectors Required</button>
         </div>
@@ -464,7 +464,7 @@ $conn->close();
                 <label for="part-conn">Enter No. of Conn:</label>
                 <input type="number" id="part-conn" name="conn_count" placeholder="Enter number of connectors" required>
             </div>
-            <button type="submit" class="submit-btn">Add Part</button>
+            <button type="submit" class="submit-btn">Add New Part</button>
         </form>
 
         <!-- Add Connectors Form -->
