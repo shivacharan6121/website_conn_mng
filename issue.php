@@ -295,7 +295,7 @@ $total_records = $result->num_rows;
         /* Print-specific styles */
         @media print {
             body * {
-                visibility: visible;
+                visibility: hidden;
             }
             .modal-document, .modal-document * {
                 visibility: visible;
@@ -312,6 +312,8 @@ $total_records = $result->num_rows;
                 background-color: white;
                 box-sizing: border-box;
                 border-radius: 0;
+                page-break-after: avoid;
+                page-break-inside: avoid;
             }
             .modal-header, .modal-buttons {
                 display: none;
@@ -326,7 +328,7 @@ $total_records = $result->num_rows;
 <body>
     <div class="header">
         <img src="images/aircraft.gif" alt="Logo" class="header-gif">&nbsp;
-        <h1>Stores Management System</h1>
+        <h1>EO-SAAW Stores Management System</h1>
     </div>
 
     <div class="menu-bar">
@@ -470,7 +472,7 @@ $total_records = $result->num_rows;
                     <div>Signature</div>
                 </div>
             </div>
-            <br><br><br><br>
+            <br><br>
             <div class="approval-section">
                 <div>Approved</div><br><br><br>
                 <div>Project Director<br>EO-SAAW</div>
@@ -491,26 +493,118 @@ $total_records = $result->num_rows;
 
     function printDocument() {
         // First close the modal
-        closeModal();
+        //closeModal();
         
         // Store the original body content
-        const originalContent = document.body.innerHTML;
+        //const originalContent = document.body.innerHTML;
         
         // Get the document content
         const printContent = document.getElementById('printDocumentContent').innerHTML;
         
+        const win = window.open('', '', 'width=900,height=650');
+        win.document.write(`
+            <html>
+            <head>
+                <title>EO-SAAW Stores Management</title>
+                <style>
+                    body * {
+                        visibility: hidden;
+                    }
+                    .document-title {
+                        text-align: center;
+                        font-size: 30px;
+                        font-weight: bold;
+                        margin-top: 25px;
+                        margin-bottom: 30px;
+                        text-decoration: underline;
+                    }
+                    .document-subtitle {
+                        text-align: left;
+                        font-size: 16px;
+                        margin-bottom: 30px;
+                    }
+                    .document-line {
+                        display: flex;
+                        margin-bottom: 15px;
+                        padding-bottom: 5px;
+                    }
+                    .document-label {
+                        width: 250px;
+                        font-weight: bold;
+                    }
+                    .document-value {
+                        flex-grow: 1;
+                        padding-left: 10px;
+                    }
+                    .signature-section {
+                        display: flex;
+                        justify-content: right;
+                        margin-right: 90px;
+                        margin-top:95px;
+                    }
+                    .signature-box {
+                        text-align: right;
+                        width: 200px;
+                    }
+                    .approval-section {
+                        text-align: center;
+                        margin-top: 70px;
+                    }
+                    .modal-document, .modal-document * {
+                        visibility: visible;
+                    }
+                    .modal-document {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: auto;
+                        margin: 0;
+                        border: 2px solid #000 !important;
+                        padding: 30px !important;
+                        background-color: white;
+                        box-sizing: border-box;
+                        border-radius: 0;
+                        page-break-after: avoid;
+                        page-break-inside: avoid;
+                    }
+                    .modal-header, .modal-buttons {
+                        display: none;
+                    }
+                    @page {
+                        size: A4;
+                        margin: 20mm;
+                    }
+                
+                </style>
+            </head>
+            <body>
+                <div class="modal-document">
+                    ${printContent}
+                </div>
+            </body>
+            </html>
+        `);
+        win.document.close();
+        win.focus();
+        win.print();
+        win.close();
+        
+        
+        
+        
         // Replace body content with just the document
-        document.body.innerHTML = `
-            <div style="font-family: Arial, sans-serif; padding: 30px; border: 2px solid black;">
-                ${printContent}
-            </div>
-        `;
+        //document.body.innerHTML = `
+        //   <div style="font-family: Arial, sans-serif; padding: 30px; border: 2px solid black;">
+        //        ${printContent}
+        //    </div>
+        //`;
         
         // Print the document
-        window.print();
-        
+        //window.print();
+
         // Restore the original content
-        document.body.innerHTML = originalContent;
+        //document.body.innerHTML = originalContent;
     }
 
     // Close modal when clicking outside of it
