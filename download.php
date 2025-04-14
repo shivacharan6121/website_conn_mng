@@ -34,12 +34,12 @@ $conn->close();
         }
         
         .header {
-            background-color: #1a2332;
+            background-color: none;
             padding: 15px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            
         }
         
         .header h1 {
@@ -52,26 +52,7 @@ $conn->close();
             margin-right: 10px;
         }
         
-        .menu-bar {
-            background-color: #1e283a;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-        }
         
-        .menu-bar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 5px;
-            font-weight: bold;
-        }
-        
-        .menu-bar a:hover {
-            background-color: #9fef00;
-            color: black;
-            border-radius: 4px;
-        }
         
         .container {
             max-width: 1200px;
@@ -158,7 +139,7 @@ $conn->close();
 <body>
     <div class="header">
         <img src="images/aircraft.gif" alt="Logo" class="header-gif">&nbsp;
-        <h1>Connector Management System</h1>
+        <h1>EO-SAAW Stores Management System</h1>
     </div>
 
     <div class="menu-bar">
